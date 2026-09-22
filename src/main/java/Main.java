@@ -5,10 +5,15 @@ public class Main {
         
         Scanner input = new Scanner(System.in);
 
-        while (true) {
+        String command = "";
+
+        while (!command.equals("exit")) {
             System.out.print("$ ");
 
-            String command = input.nextLine();
+            command = input.nextLine();
+
+            command = command.stripLeading();
+            command = command.stripTrailing();
 
             System.out.println(command + ": command not found");
         }
