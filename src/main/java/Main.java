@@ -15,7 +15,7 @@ public class Main {
             command = command.stripLeading();
             command = command.stripTrailing();
 
-            if (command.equals("exit"))) {
+            if (command.equals("exit")) {
                 System.exit(0);
             }
 
