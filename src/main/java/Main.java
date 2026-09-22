@@ -21,9 +21,9 @@ public class Main {
                 String echoArgs = command.substring(5);
 
                 System.out.println(echoArgs);
+            } else {
+                System.out.println(command + ": command not found");
             }
-
-            System.out.println(command + ": command not found");
         }
     }
 }
