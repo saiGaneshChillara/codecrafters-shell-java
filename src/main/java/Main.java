@@ -15,6 +15,10 @@ public class Main {
             command = command.stripLeading();
             command = command.stripTrailing();
 
+            if (command.equals("exit"))) {
+                System.exit(0);
+            }
+
             System.out.println(command + ": command not found");
         }
     }
