@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.print("$ ");
 
-        Scanner input = new Scanner();
+        Scanner input = new Scanner(System.in);
 
         String command = input.nextLine();
 
