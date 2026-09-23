@@ -1,3 +1,7 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
@@ -24,6 +28,7 @@ public class Main {
             } else if (command.startsWith("type")) {
                 String infoCommand = command.substring(5);
 
+                switchLable:
                 switch (infoCommand) {
                     case "echo":
                     case "exit":
@@ -31,6 +36,19 @@ public class Main {
                         System.out.println(infoCommand + " is a shell builtin");
                         break;
                     default:
+                        String pathVariable = System.getenv("PATH");
+                        if (pathVariable != null) {
+                            String[] directories = pathVariable.split(File.pathSeparator);
+
+                            for (String dir: directories) {
+                                Path path = Paths.get(dir, infoCommand);
+
+                                if (Files.exists(path) && Files.isExecutable(path)) {
+                                    System.out.println(infoCommand + " is " + path);
+                                    break switchLable;
+                                }
+                            }
+                        }
                         System.out.println(infoCommand + ": not found");
                         break;
                 }
