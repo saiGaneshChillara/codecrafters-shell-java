@@ -21,7 +21,21 @@ public class Main {
                 String echoArgs = command.substring(5);
 
                 System.out.println(echoArgs);
-            } else {
+            } else if (command.startsWith("type")) {
+                String infoCommand = command.substring(5);
+
+                switch (infoCommand) {
+                    case "echo":
+                    case "exit":
+                    case "type":
+                        System.out.println(infoCommand + " is a shell builtin");
+                        break;
+                    default:
+                        System.out.println(infoCommand + ": not found");
+                        break;
+                }
+            }
+            else {
                 System.out.println(command + ": command not found");
             }
         }
