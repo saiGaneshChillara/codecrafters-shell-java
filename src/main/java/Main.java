@@ -17,6 +17,8 @@ public class Main {
 
             if (command.equals("exit")) {
                 break;
+            } else if (command.equals("pwd")) {
+                System.out.println(getPresentWorkingDir());
             } else if (
                 command.equals("echo") || command.startsWith("echo ")
             ) {
@@ -67,7 +69,8 @@ public class Main {
     private static boolean isBuiltin(String command) {
         return command.equals("echo")
                 || command.equals("exit")
-                || command.equals("type");
+                || command.equals("type")
+                || command.equals("pwd");
     }
 
     private static Path findExecutable(String command) {
@@ -100,5 +103,9 @@ public class Main {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Path getPresentWorkingDir() {
+        return Path.of("").toAbsolutePath();
     }
 }
