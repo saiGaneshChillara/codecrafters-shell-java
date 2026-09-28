@@ -118,10 +118,11 @@ public class Main {
 
     private static void handleChangeDirectory(String command) {
         String pathString = command.length() > 3 ? command.substring(3) : "";
-        Path newPath = Path.of(pathString).isAbsolute() ? Path.of(pathString) : currentWorkingDir.resolve(pathString);
+        Path path = Path.of(pathString);
+        Path newPath = path.isAbsolute() ? path : currentWorkingDir.resolve(pathString);
 
-        if (Files.exists(newPath)) {
-            currentWorkingDir = newPath;
+        if (Files.isDirectory(newPath)) {
+            currentWorkingDir = newPath.normalize();
         } else {
             System.out.println("cd: " + pathString + ": No such file or directory");
         }
