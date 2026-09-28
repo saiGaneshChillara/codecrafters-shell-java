@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
+
+    private static Path currentWorkingDir = Path.of("").toAbsolutePath();
     public static void main(String[] args) throws Exception {
         
         Scanner input = new Scanner(System.in);
@@ -30,6 +32,11 @@ public class Main {
                 handleType(command);
             } else if (findExecutable(command.split(" ")[0]) != null) {
                 executeExternalProgram(command.split(" "));
+            } else if (
+                command.equals("cd") || 
+                command.equals("cd ")
+            ) {
+                handleChangeDirectory(command);
             }
             else {
                 System.out.println(command + ": command not found");
@@ -106,6 +113,15 @@ public class Main {
     }
 
     private static Path getPresentWorkingDir() {
-        return Path.of("").toAbsolutePath();
+        return currentWorkingDir;
+    }
+
+    private static void handleChangeDirectory(String command) {
+        String pathString = command.length() > 3 ? command.substring(3) : "";
+        Path newPath = Path.of(pathString);
+
+        if (Files.exists(newPath)) {
+            currentWorkingDir = newPath;
+        }
     }
 }
