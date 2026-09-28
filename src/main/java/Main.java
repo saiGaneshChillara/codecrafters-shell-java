@@ -34,7 +34,7 @@ public class Main {
                 executeExternalProgram(command.split(" "));
             } else if (
                 command.equals("cd") || 
-                command.equals("cd ")
+                command.startsWith("cd ")
             ) {
                 handleChangeDirectory(command);
             }
