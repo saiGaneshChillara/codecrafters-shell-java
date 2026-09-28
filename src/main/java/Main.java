@@ -118,7 +118,7 @@ public class Main {
 
     private static void handleChangeDirectory(String command) {
         String pathString = command.length() > 3 ? command.substring(3) : "";
-        Path newPath = Path.of(pathString);
+        Path newPath = Path.of(pathString).isAbsolute() ? Path.of(pathString) : currentWorkingDir.resolve(pathString);
 
         if (Files.exists(newPath)) {
             currentWorkingDir = newPath;
