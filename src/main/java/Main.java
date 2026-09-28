@@ -118,6 +118,13 @@ public class Main {
 
     private static void handleChangeDirectory(String command) {
         String pathString = command.length() > 3 ? command.substring(3) : "";
+        
+        if (pathString.equals("~")) {
+            String homePath = System.getenv("HOME");
+            currentWorkingDir = Path.of(homePath).toAbsolutePath();
+            return;
+        }
+        
         Path path = Path.of(pathString);
         Path newPath = path.isAbsolute() ? path : currentWorkingDir.resolve(pathString);
 
