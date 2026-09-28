@@ -122,6 +122,8 @@ public class Main {
 
         if (Files.exists(newPath)) {
             currentWorkingDir = newPath;
+        } else {
+            System.out.println("cd: " + pathString + ": No such file or directory");
         }
     }
 }
